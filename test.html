@@ -1,14 +1,59 @@
-
-
 <!DOCTYPE HTML>
 <html>
+<head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0
+	}
+	html,body{height: 100%;width: 100%}
+	.img{
+		background-image: url(http://7xqsae.com1.z0.glb.clouddn.com/xiongmao.gif);
+		background-repeat: no-repeat;
+		height:100%;
+		width:100%;
+		background-size: cover;
+	}
+</style>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#imgContent").click=function(e){
+			console.log(e);
+		}
+	})
+</script>
+</head>
 <body>
-
 <audio hidden="hidden" src="http://7xqsae.com1.z0.glb.clouddn.com/Amy%20Diamond%20-%20Heartbeats.mp3"  autoplay="autoplay" controls="controls" >
 Your browser does not support the audio element.
 </audio>
+<!-- <img class="img" src="http://7xqsae.com1.z0.glb.clouddn.com/xiongmao.gif"/> -->
+<div id="imgContent" class="img" usemap="#planetmap"
+alt="Planets"></div>
+<map name="planetmap" id="planetmap">
 
-<img src="http://7xqsae.com1.z0.glb.clouddn.com/xiongmao.gif" width="2000" height="1000" />
+<area
+shape="circle"
+coords="180,139,14"
+href ="/example/html/venus.html"
+target ="_blank"
+alt="Venus" />
 
+<area
+shape="circle"
+coords="129,161,10"
+href ="/example/html/mercur.html"
+target ="_blank"
+alt="Mercury" />
+
+<area
+shape="rect"
+coords="0,0,110,260"
+href ="/example/html/sun.html"
+target ="_blank"
+alt="Sun" />
+
+</map>
 </body>
 </html>
