@@ -23,15 +23,17 @@
 <!--×Ô¶¯²¥·ÅÒôÀÖ-->
 
 <img
-src="\grateful\images\testImage.jpg"
+src="C:\Users\txxs\Documents\GitHub\hmlgrace\grateful\images\testImage.jpg"
 border="0" usemap="#planetmap"
 alt="Planets" />
 
 <map name="planetmap" id="planetmap">
 
 <area
-shape="circle"
-coords="180,139,14"
+shape="rect"
+coords="2,257,270,365"
+onclick="copyTextOne()"
+data-dialog0="palacedialog"
 target ="_blank"
 alt="Venus" />
 
@@ -65,6 +67,21 @@ alt="Sun" />
 			</div>
 		</div>
 	</div>
+	
+		<div id="palacedialog" class="dialog">
+		<div class="dialog__overlay"></div>
+		<div class="dialog__content">
+			<div class="morph-shape" data-morph-open="M199.5,100c0,54.955-44.768,99.5-100,99.5s-100-44.545-100-99.5c0-54.956,44.769-99.5,100-99.5
+S199.5,45.044,199.5,100z">
+				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+					<path d="M199.5,100c0,0.552-44.768,1-100,1s-100-0.448-100-1s44.769-1,100-1S199.5,99.448,199.5,100z"></path>
+				</svg>
+			</div>
+			<div class="dialog-inner">
+				<h2><strong>hello</strong>, this is palace</h2><div><button class="action" data-dialog-close>Close</button></div>
+			</div>
+		</div>
+	</div>
 
 
 <script type="text/javascript" src="js/classie.js" charset="utf-8"></script>
@@ -72,9 +89,9 @@ alt="Sun" />
 <script type="text/javascript">
 (function copyText() {
 
-	var dlgtrigger = document.querySelector( '[data-dialog]' ),
+	var dlgtrigger = document.querySelector( '[data-dialog0]' ),
 
-		headdialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog' ) ),
+		headdialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog0' ) ),
 		// svg..
 		morphEl = headdialog.querySelector( '.morph-shape' ),
 		s = Snap( morphEl.querySelector( 'svg' ) ),
@@ -93,6 +110,33 @@ alt="Sun" />
 			onCloseDialog : function( instance ) {
 				// animate path
 				path.stop().animate( { 'path' : steps.close }, 250, mina.easeout );
+			}
+		} );
+
+	dlgtrigger.addEventListener( 'click', dlg.toggle.bind(dlg) );
+
+})();
+
+
+(function copyTextOne() {
+
+	var dlgtrigger = document.querySelector( '[data-dialog]' ),
+
+		palacedialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog' ) ),
+		// svg..
+		morphEl = palacedialog.querySelector( '.morph-shape' ),
+		s = Snap( morphEl.querySelector( 'svg' ) ),
+		path = s.select( 'path' ),
+		initialPath = path.attr('d'),
+		steps = { 
+			open : morphEl.getAttribute( 'data-morph-open' )
+		},
+		dlg = new DialogFx( palacedialog, {
+			onOpenDialog : function( instance ) {
+				// reset path
+				morphEl.querySelector( 'svg > path' ).setAttribute( 'd', initialPath );
+				// animate path
+				path.stop().animate( { 'path' : steps.open }, 300, mina.easein );
 			}
 		} );
 
