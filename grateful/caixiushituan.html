@@ -105,7 +105,7 @@ alt="Venus" />
 		</div>
 	</div>
     
-    	<div id="picFourdialog" class="dialog">
+    	<div id="" class="dialog">
 		<div class="dialog__overlay"></div>
 		<div class="dialog__content">
 			<div class="morph-shape" data-morph-open="M33,0h41c0,0,0,9.871,0,29.871C74,49.871,74,60,74,60H32.666h-0.125H6c0,0,0-10,0-30S6,0,6,0H33" data-morph-close="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33">
@@ -118,6 +118,23 @@ alt="Venus" />
 			</div>
 		</div>
 	</div>
+    
+    	<div id="picFourdialog" class="dialog">
+		<div class="dialog__overlay"></div>
+		<div class="dialog__content">
+			<div class="morph-shape" data-morph-open="M199.5,100c0,54.955-44.768,99.5-100,99.5s-100-44.545-100-99.5c0-54.956,44.769-99.5,100-99.5
+S199.5,45.044,199.5,100z">
+				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+					<path d="M199.5,100c0,0.552-44.768,1-100,1s-100-0.448-100-1s44.769-1,100-1S199.5,99.448,199.5,100z"></path>
+				</svg>
+			</div>
+			<div class="dialog-inner">
+				<h1>龙袍、蟒袍下端斜向排列的线条称“水脚”。水脚上有波涛翻滚的水浪，水浪之上又立有山石宝物，俗称为“江牙海水”</h1><div><button class="action" data-dialog-close>关闭</button></div>
+			</div>
+		</div>
+	</div>
+    
+    
 
 
 <script type="text/javascript" src="js/classie.js" charset="utf-8"></script>
@@ -215,7 +232,7 @@ alt="Venus" />
 })();
 
 
-(function picFour() {
+(function () {
 
 	var dlgtrigger = document.querySelector( '[data-dialog4]' ),
 
@@ -244,6 +261,33 @@ alt="Venus" />
 	dlgtrigger.addEventListener( 'click', dlg.toggle.bind(dlg) );
 
 })();
+
+(function picFour() {
+
+	var dlgtrigger = document.querySelector( '[data-dialog4]' ),
+
+		picFourdialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog4' ) ),
+		// svg..
+		morphEl = picFourdialog.querySelector( '.morph-shape' ),
+		s = Snap( morphEl.querySelector( 'svg' ) ),
+		path = s.select( 'path' ),
+		initialPath = path.attr('d'),
+		steps = { 
+			open : morphEl.getAttribute( 'data-morph-open' )
+		},
+		dlg = new DialogFx( picFourdialog, {
+			onOpenDialog : function( instance ) {
+				// reset path
+				morphEl.querySelector( 'svg > path' ).setAttribute( 'd', initialPath );
+				// animate path
+				path.stop().animate( { 'path' : steps.open }, 300, mina.easein );
+			}
+		} );
+
+	dlgtrigger.addEventListener( 'click', dlg.toggle.bind(dlg) );
+
+})();
+</script>
 
 </script>
 
